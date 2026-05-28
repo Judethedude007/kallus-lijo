@@ -1,0 +1,83 @@
+.wedding-gallery-section {
+  background-color: var(--color-background);
+  position: relative;
+  z-index: 10;
+}
+
+.wedding-header h2 {
+  font-size: 3.5rem;
+  color: var(--color-text-light);
+  line-height: 1.1;
+  max-width: 600px;
+}
+
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  grid-auto-flow: dense;
+}
+
+.gallery-item-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+/* Staggered Masonry Layout to mimic high end boutique aesthetic */
+.gallery-item-container:nth-child(1) { grid-column: span 7; }
+.gallery-item-container:nth-child(2) { grid-column: span 5; margin-top: 4rem; }
+
+.gallery-item-container:nth-child(3) { grid-column: span 4; }
+.gallery-item-container:nth-child(4) { grid-column: span 8; margin-top: -3rem; }
+
+.gallery-item-container:nth-child(5) { grid-column: span 6; }
+.gallery-item-container:nth-child(6) { grid-column: span 6; margin-top: 3rem; }
+
+.gallery-img-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gallery-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.1);
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.gallery-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent);
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.gallery-item-container:hover .gallery-img {
+  transform: scale(1.05);
+  filter: brightness(1) contrast(1.1);
+}
+
+.gallery-item-container:hover .gallery-glow {
+  opacity: 1;
+}
+
+@media (max-width: 968px) {
+  .gallery-item-container:nth-child(1),
+  .gallery-item-container:nth-child(2),
+  .gallery-item-container:nth-child(3),
+  .gallery-item-container:nth-child(4),
+  .gallery-item-container:nth-child(5),
+  .gallery-item-container:nth-child(6) {
+    grid-column: span 12;
+    margin-top: 0;
+  }
+}

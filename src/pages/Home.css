@@ -1,0 +1,420 @@
+/* Loader */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #02060C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-floral-bg {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .loader-floral-bg {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Gorgeous radial gradient that focuses bright gold floral directly behind the spinning circle */
+    background-image: 
+      radial-gradient(circle at center, rgba(2,6,12,0) 0%, rgba(2,6,12,0.95) 75%, rgba(2,6,12,1) 100%),
+      url('../assets/floral-pattern.png');
+    background-size: 500px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.35; /* Premium soft golden ambient texture */
+    mix-blend-mode: screen; 
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.loader-enter-btn {
+  position: absolute;
+  bottom: 15vh; 
+  background: transparent; 
+  color: #D4AF37; /* Authentic Kallos Gold text */
+  font-weight: 400; /* Adjusted for D4AF37 legibility */
+  border: 1px solid rgba(212, 175, 55, 0.3); /* Fragile looking gold outer rim */
+  padding: 1rem 4.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 8px; /* Extremely wide cinematic kerning */
+  text-transform: uppercase;
+  border-radius: 40px;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.05); 
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+/* Luxury Interactive Hover State */
+.loader-enter-btn:hover {
+  background: #D4AF37; /* Floods the background with solid gold */
+  color: #02060C; /* Inverts text to pure dark */
+  font-weight: 600; /* Boldens text when solid */
+  border-color: #D4AF37;
+  /* Dual-staged extreme golden glow matrix */
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.2);
+  transform: translateY(-2px) scale(1.03); /* Slight confident lift */
+}
+
+.loader-circle-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-logo {
+  height: 120px;
+  position: absolute;
+  z-index: 2;
+  filter: brightness(0) invert(72%) sepia(85%) saturate(301%) hue-rotate(5deg) brightness(97%) contrast(85%); 
+}
+
+.loader-circle-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.loader-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 2;
+}
+
+.loader-circle-progress {
+  fill: none;
+  stroke: var(--color-secondary);
+  stroke-width: 2;
+  stroke-dasharray: 301.59; /* Circumference of r=48 */
+  stroke-linecap: round;
+}
+
+/* DEDICATED TITLE VIDEO BACKDROP STYLES */
+.title-backdrop-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2.5rem;
+}
+
+.title-placeholder-video-box {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  z-index: -1;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0; /* Change to 1 when video is supplied, or keep at 0.5 for current preview */
+  animation: glowIn 2s ease forwards 1.6s;
+}
+
+.title-embedded-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px) brightness(0.6); /* Creates a soft cinematic backdrop */
+}
+
+.title-video-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, var(--color-background) 80%);
+}
+
+@keyframes glowIn {
+  from { opacity: 0; }
+  to { opacity: 0.8; }
+}
+
+.hero-title {
+  margin-bottom: 0; /* reset since container handles it */
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Extra height for parallax */
+  z-index: -1;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.8) contrast(1.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(2, 6, 12, 0.95) 0%, rgba(2, 6, 12, 0.3) 100%);
+  z-index: 2;
+}
+
+.hero-gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to top, var(--color-background) 0%, transparent 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  color: var(--color-text-light);
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
+  margin-top: 5rem; /* Push down slightly */
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: var(--color-secondary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-desc {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  opacity: 0.8;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Services Preview */
+.services-preview {
+  background-color: var(--color-background);
+  position: relative;
+  z-index: 10;
+}
+
+.section-header {
+  margin-bottom: 5rem;
+  max-width: 800px;
+}
+
+.section-kicker {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 4rem;
+  color: var(--color-text-light);
+  font-weight: 800;
+}
+
+.text-center {
+  text-align: center;
+  margin: 0 auto 5rem;
+}
+
+.header-line {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-secondary);
+  margin: 2rem auto 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* Testimonials */
+.testimonials-section {
+  background-color: #040A14;
+  position: relative;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+
+.testimonial-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.testimonial-card {
+  padding: 4rem;
+  border-radius: 4px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 24 24" fill="%23D4AF37" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" /></svg>');
+  background-repeat: no-repeat;
+  opacity: 0.2;
+}
+
+.testimonial-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: #E2E8F0;
+}
+
+.testimonial-author h4 {
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.testimonial-author span {
+  font-size: 0.9rem;
+  opacity: 0.5;
+  font-family: var(--font-body);
+}
+
+@media (max-width: 1200px) {
+  .hero-title { font-size: 4.5rem; }
+  .section-header h2 { font-size: 3rem; }
+}
+
+@media (max-width: 968px) {
+  .hero-title { font-size: 3.5rem; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  
+  .testimonial-cards { 
+    display: flex; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    gap: 1.5rem; 
+    padding-bottom: 2rem; 
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+  }
+  
+  .testimonial-cards::-webkit-scrollbar { 
+    display: none; 
+  }
+  
+  .testimonial-card { 
+    min-width: 85vw; 
+    scroll-snap-align: center; 
+    padding: 2.5rem; 
+  }
+  
+  .testimonial-card:first-child {
+    animation: swipeHintJiggle 5s cubic-bezier(0.16, 1, 0.3, 1) infinite 2s;
+  }
+  
+  .testimonial-card::before {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+}
+
+@keyframes swipeHintJiggle {
+  0%, 100% { transform: translateX(0); }
+  5% { transform: translateX(-15px); }
+  10% { transform: translateX(10px); }
+  15% { transform: translateX(-5px); }
+  20% { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.8rem; }
+  .hero-desc { font-size: 1.1rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .section-header h2 { font-size: 2.5rem; }
+}
