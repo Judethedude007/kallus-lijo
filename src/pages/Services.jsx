@@ -7,7 +7,7 @@ import servWeddings from '../assets/weddings/DSC02675-Enhanced-NR-optimized.webp
 import serv360 from '../assets/360 photobooth/360-optimized.webp';
 import servDJ from '../assets/party/DSC08496-optimized.webp';
 import servAdverts from "../assets/openings/DSC08152-optimized.webp";
-import servFood from "../assets/corporate/DSC00013-optimized.webp";
+import servFood from "../assets/corporate/DSC09853-optimized.webp";
 import servGatherings from '../assets/gatherings/DSC01124-Enhanced-NR-optimized.webp';
 
 const imageModules = import.meta.glob([
@@ -43,7 +43,7 @@ const Services = () => {
   return (
     <div className="services-page-wrapper">
       <div className="services-header-box">
-        <motion.h1 
+        <motion.h1
           className="services-title text-center text-gradient"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,8 +56,8 @@ const Services = () => {
       <div className="container">
         <div className="services-grid">
           {programs.map((program, idx) => (
-            <motion.div 
-              key={idx} 
+            <motion.div
+              key={idx}
               className="service-card-heavy glass-box cursor-pointer"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -78,12 +78,12 @@ const Services = () => {
           ))}
         </div>
       </div>
-      
+
       <CircularBadge text="Scroll to Explore • Premium Events • " />
 
       <AnimatePresence>
         {selectedProgram && (
-          <motion.div 
+          <motion.div
             className="gallery-modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +91,7 @@ const Services = () => {
             onClick={() => setSelectedProgram(null)}
           >
             <button className="modal-close" onClick={() => setSelectedProgram(null)}>×</button>
-            <motion.div 
+            <motion.div
               className="modal-content"
               initial={{ scale: 0.9, y: 50 }}
               animate={{ scale: 1, y: 0 }}
@@ -99,7 +99,7 @@ const Services = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <h2>{selectedProgram.title} Gallery</h2>
-              <motion.div 
+              <motion.div
                 className="modal-gallery-grid"
                 variants={{
                   hidden: { opacity: 0 },
@@ -120,42 +120,42 @@ const Services = () => {
                     const col = Math.floor(i / itemsPerCol);
                     const row = i % itemsPerCol;
                     // Sideways load: horizontal wave progressing downwards
-                    const customDelay = (row * 0.08) + (col * 0.04) + 0.2; 
-                    
-                    const isVideo = src.match(/\.(mp4|webm|mov)$/i);
+                    const customDelay = (row * 0.08) + (col * 0.04) + 0.2;
+
+                    const isVideo = src.split('?')[0].match(/\.(mp4|webm|mov)$/i);
                     return isVideo ? (
-                      <motion.video 
-                        key={i} 
-                        src={src} 
-                        autoPlay 
-                        loop 
-                        muted 
+                      <motion.video
+                        key={i}
+                        src={src}
+                        autoPlay
+                        loop
+                        muted
                         playsInline
                         variants={{
                           hidden: { opacity: 0, y: 80, scale: 0.85, filter: "blur(10px)" },
-                          show: { 
-                            opacity: 1, 
-                            y: 0, 
-                            scale: 1, 
-                            filter: "blur(0px)", 
-                            transition: { type: "spring", bounce: 0.4, duration: 1.4, delay: customDelay } 
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            filter: "blur(0px)",
+                            transition: { type: "spring", bounce: 0.4, duration: 1.4, delay: customDelay }
                           }
                         }}
                       />
                     ) : (
-                      <motion.img 
-                        key={i} 
-                        src={src} 
-                        alt={`${selectedProgram.title} gallery item`} 
-                        loading="lazy" 
+                      <motion.img
+                        key={i}
+                        src={src}
+                        alt={`${selectedProgram.title} gallery item`}
+                        loading="lazy"
                         variants={{
-                          hidden: { opacity: 0, y: 80, scale: 0.85, filter: "blur(10px)" }, 
-                          show: { 
-                            opacity: 1, 
-                            y: 0, 
-                            scale: 1, 
-                            filter: "blur(0px)", 
-                            transition: { type: "spring", bounce: 0.4, duration: 1.4, delay: customDelay } 
+                          hidden: { opacity: 0, y: 80, scale: 0.85, filter: "blur(10px)" },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            filter: "blur(0px)",
+                            transition: { type: "spring", bounce: 0.4, duration: 1.4, delay: customDelay }
                           }
                         }}
                       />
